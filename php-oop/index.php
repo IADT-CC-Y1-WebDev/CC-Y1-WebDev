@@ -2,10 +2,15 @@
 require_once './classes/Account/BankAccount.php';
 require_once './classes/Account/SavingsAccount.php';
 require_once './classes/Account/CurrentAccount.php';
+require_once './classes/User/Employee.php';
+require_once './classes/User/Customer.php';
 
 use Account\BankAccount;
 use Account\SavingsAccount;
 use Account\CurrentAccount;
+
+use User\Employee;
+use User\Customer;
 
 $accountJoe = new BankAccount("1234567890", "Joe", 100.00);
 $accountJoe->deposit(20.0);
@@ -37,4 +42,10 @@ $accounts = BankAccount::findAll();
 foreach($accounts as $acc) {
     echo "<p>" . $acc . "</p>";
 }
+
+$employee = new Employee("hbloggs", "secret", "Harry Bloggs", "1230984576");
+echo "<p>$employee</p>";
+
+$customer = new Customer("wangm", "secret123", "Wang Mei", "10 Main St", "087-1239874");
+echo "<p> $customer</p>";
 ?>
