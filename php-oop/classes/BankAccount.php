@@ -1,15 +1,19 @@
 <?php
 class BankAccount {
 
-	public $number;
-    public $name;
-	public $balance;
+	private $number;
+    private $name;
+	private $balance;
 
 	public function __construct($num, $name, $bal) {
 		$this->number = $num;
         $this->name = $name;
 		$this->balance = $bal;
 	}
+
+    public function getNumber() { return $this->number; }
+    public function getName() { return $this->name; }
+    public function getBalance() { return $this->balance; }
 
 	public function __toString() {
 		$format = "Account number: %s, name: %s, balance: %01.2f";
