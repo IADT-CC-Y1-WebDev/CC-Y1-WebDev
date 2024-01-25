@@ -1,4 +1,7 @@
 <?php
+
+namespace Account;
+
 class BankAccount {
 
 	private static $accounts = [];

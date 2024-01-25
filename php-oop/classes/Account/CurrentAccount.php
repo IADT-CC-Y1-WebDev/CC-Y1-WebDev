@@ -1,5 +1,8 @@
 <?php
-require_once './classes/BankAccount.php';
+
+namespace Account;
+
+require_once './classes/Account/BankAccount.php';
 
 class CurrentAccount extends BankAccount {
 

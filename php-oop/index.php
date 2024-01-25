@@ -1,7 +1,11 @@
 <?php
-require_once './classes/BankAccount.php';
-require_once './classes/SavingsAccount.php';
-require_once './classes/CurrentAccount.php';
+require_once './classes/Account/BankAccount.php';
+require_once './classes/Account/SavingsAccount.php';
+require_once './classes/Account/CurrentAccount.php';
+
+use Account\BankAccount;
+use Account\SavingsAccount;
+use Account\CurrentAccount;
 
 $accountJoe = new BankAccount("1234567890", "Joe", 100.00);
 $accountJoe->deposit(20.0);
