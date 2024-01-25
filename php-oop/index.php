@@ -1,6 +1,7 @@
 <?php
 require_once './classes/BankAccount.php';
 require_once './classes/SavingsAccount.php';
+require_once './classes/CurrentAccount.php';
 
 $accountJoe = new BankAccount("1234567890", "Joe", 100.00);
 $accountJoe->deposit(20.0);
@@ -22,4 +23,15 @@ $savingsAsha->withdraw(35.0);
 $savingsAsha->addInterest();
 
 echo "<p>$savingsAsha</p>";
+
+$currentDiego = new CurrentAccount("7890123456", "Diego", 100.00);
+$currentDiego->deposit(20.0);
+$currentDiego->withdraw(30.0);
+$currentDiego->deposit(40.0);
+$currentDiego->withdraw(15.0);
+$currentDiego->deposit(25.0);
+$currentDiego->withdraw(35.0);
+$currentDiego->deductFees();
+
+echo "<p>$currentDiego</p>";
 ?>
