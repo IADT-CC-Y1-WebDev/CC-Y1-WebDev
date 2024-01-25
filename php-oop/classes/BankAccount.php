@@ -1,9 +1,9 @@
 <?php
 class BankAccount {
 
-	private $number;
-    private $name;
-	private $balance;
+	protected $number;
+    protected $name;
+	protected $balance;
 
 	public function __construct($num, $name, $bal) {
 		$this->number = $num;
