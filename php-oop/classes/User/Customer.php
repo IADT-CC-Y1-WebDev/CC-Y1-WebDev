@@ -2,8 +2,6 @@
 
 namespace User;
 
-require_once './classes/User/User.php';
-
 class Customer extends User {
     protected $address;
     protected $phone;

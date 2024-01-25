@@ -2,8 +2,6 @@
 
 namespace User;
 
-require_once './classes/User/User.php';
-
 class Employee extends User {
     protected $staffNumber;
 

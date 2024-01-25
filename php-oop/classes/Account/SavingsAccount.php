@@ -2,8 +2,6 @@
 
 namespace Account;
 
-require_once './classes/Account/BankAccount.php';
-
 class SavingsAccount extends BankAccount {
     protected $interestRate;
 

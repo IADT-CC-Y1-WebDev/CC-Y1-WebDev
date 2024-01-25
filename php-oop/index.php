@@ -1,9 +1,5 @@
 <?php
-require_once './classes/Account/BankAccount.php';
-require_once './classes/Account/SavingsAccount.php';
-require_once './classes/Account/CurrentAccount.php';
-require_once './classes/User/Employee.php';
-require_once './classes/User/Customer.php';
+require_once "./etc/config.php";
 
 use Account\BankAccount;
 use Account\SavingsAccount;

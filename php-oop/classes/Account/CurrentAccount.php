@@ -2,8 +2,6 @@
 
 namespace Account;
 
-require_once './classes/Account/BankAccount.php';
-
 class CurrentAccount extends BankAccount {
 
     protected const FREE_TRANSACTIONS = 3;
