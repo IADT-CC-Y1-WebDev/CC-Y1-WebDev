@@ -1,6 +1,19 @@
 <?php
 class BankAccount {
 
+	private static $accounts = [];
+
+	public static function findAll() {
+		return self::$accounts;
+	}
+
+	public static function findByNumber($num) {
+		$result = null;
+		if (array_key_exists($num, self::$accounts)) {
+			$result = self::$accounts[$num];
+		}
+	}
+
 	protected $number;
     protected $name;
 	protected $balance;
@@ -9,6 +22,8 @@ class BankAccount {
 		$this->number = $num;
         $this->name = $name;
 		$this->balance = $bal;
+
+		self::$accounts[$num] = $this;
 	}
 
     public function getNumber() { return $this->number; }
@@ -38,6 +53,12 @@ class BankAccount {
             throw new Exception("Insufficent funds");
         }
 		$this->balance -= $amount;
+	}
+
+	public function __destruct() {
+		if (array_key_exists($this->number, self::$accounts)) {
+			unset(self::$accounts[$this->number]);
+		}
 	}
 }
 

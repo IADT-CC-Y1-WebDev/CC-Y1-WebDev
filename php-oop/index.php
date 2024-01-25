@@ -11,8 +11,6 @@ $accountJoe->withdraw(15.0);
 $accountJoe->deposit(25.0);
 $accountJoe->withdraw(35.0);
 
-echo "<p>$accountJoe</p>";
-
 $savingsAsha = new SavingsAccount("4567890123", "Asha", 100.00, 0.05);
 $savingsAsha->deposit(20.0);
 $savingsAsha->withdraw(30.0);
@@ -21,8 +19,6 @@ $savingsAsha->withdraw(15.0);
 $savingsAsha->deposit(25.0);
 $savingsAsha->withdraw(35.0);
 $savingsAsha->addInterest();
-
-echo "<p>$savingsAsha</p>";
 
 $currentDiego = new CurrentAccount("7890123456", "Diego", 100.00);
 $currentDiego->deposit(20.0);
@@ -33,5 +29,8 @@ $currentDiego->deposit(25.0);
 $currentDiego->withdraw(35.0);
 $currentDiego->deductFees();
 
-echo "<p>$currentDiego</p>";
+$accounts = BankAccount::findAll();
+foreach($accounts as $acc) {
+    echo "<p>" . $acc . "</p>";
+}
 ?>
