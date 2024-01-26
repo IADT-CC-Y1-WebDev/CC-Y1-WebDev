@@ -39,6 +39,15 @@ foreach($accounts as $acc) {
     echo "<p>" . $acc . "</p>";
 }
 
+$num = "1234567890";
+$account = BankAccount::findByNumber($num);
+if ($account !== null) {
+    echo "<p>Found " . $account . "</p>";
+}
+else {
+    echo "Account number $num not found";
+}
+
 $employee = new Employee("hbloggs", "secret", "Harry Bloggs", "1230984576");
 echo "<p>$employee</p>";
 

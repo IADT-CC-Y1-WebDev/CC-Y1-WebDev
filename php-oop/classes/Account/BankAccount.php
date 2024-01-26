@@ -15,6 +15,7 @@ class BankAccount {
 		if (array_key_exists($num, self::$accounts)) {
 			$result = self::$accounts[$num];
 		}
+		return $result;
 	}
 
 	protected $number;
