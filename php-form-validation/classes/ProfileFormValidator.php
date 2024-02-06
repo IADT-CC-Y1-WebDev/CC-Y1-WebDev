@@ -1,5 +1,5 @@
 <?php
-class ProfileFormValidator extends Validator {
+class ProfileFormValidator extends FormValidator {
     public function __construct($data=[]) {
         parent::__construct($data);
     }
@@ -40,7 +40,7 @@ class ProfileFormValidator extends Validator {
         
         $validLanguages = ["English", "Irish", "Spanish"];
         if (!$this->isPresent("languages")) {
-            $this->errors["languages"] = "Please choose a languages";
+            $this->errors["languages"] = "Please choose a language";
         }
         else if (!$this->isSubset("languages", $validLanguages)) {
             $this->errors["languages"] = "Please choose valid languages";
