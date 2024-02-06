@@ -12,7 +12,11 @@ if ($_POST['age'] >= 21) {
 }
 else {
     $errors = [
-        "age" => "Age must be greater than or equal to 21"
+        "name" => "Please enter a name",
+        "age" => "Age must be greater than or equal to 21",
+        "category" => "Please choose a category",
+        "experience" => "Please select your experience level",
+        "languages" => "Please choose at least one language"
     ];
     // redirect the browser back to the form
     if (session_status() === PHP_SESSION_NONE) {
