@@ -1,3 +1,16 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+echo "<pre>";
+if (array_key_exists("form-data", $_SESSION)) {
+    print_r($_SESSION["form-data"]);
+}
+if (array_key_exists("form-errors", $_SESSION)) {
+    print_r($_SESSION["form-errors"]);
+}
+echo "</pre>";
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -47,3 +60,11 @@
         </form>
     </body>
 </html>
+<?php
+if (array_key_exists("form-data", $_SESSION)) {
+    unset($_SESSION["form-data"]);
+}
+if (array_key_exists("form-errors", $_SESSION)) {
+    unset($_SESSION["form-errors"]);
+}
+?>

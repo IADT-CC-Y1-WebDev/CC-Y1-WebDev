@@ -11,7 +11,15 @@ if ($_POST['age'] >= 21) {
     redirect("success.php");
 }
 else {
+    $errors = [
+        "age" => "Age must be greater than or equal to 21"
+    ];
     // redirect the browser back to the form
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    $_SESSION["form-data"] =  $_POST;
+    $_SESSION["form-errors"] = $errors;
     redirect("form.php");
 }
 ?>
