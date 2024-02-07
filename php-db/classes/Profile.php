@@ -61,5 +61,43 @@ class Profile {
 
         return $profiles;
     }
+
+    public static function findById($id) {
+        $profile = null;
+
+        try {
+            $db = new DB();
+            $conn = $db->open();
+
+            $sql = "SELECT * FROM profiles WHERE id = :id";
+            $params = [
+                ":id" => $id
+            ];
+            $stmt = $conn->prepare($sql);
+            $status = $stmt->execute($params);
+
+            if (!$status) {
+                $error_info = $stmt->errorInfo();
+                $message = sprintf(
+                    "SQLSTATE error code: %d; error message: %s",
+                    $error_info[0],
+                    $error_info[2]
+                );
+                throw new Exception($message);
+            }
+
+            if ($stmt->rowCount() !== 0) {
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                $profile = new Profile($row);
+            }
+        }
+        finally {
+            if ($db !== null && $db->isOpen()) {
+                $db->close();
+            }
+        }
+
+        return $profile;
+    }
 }
 ?>
