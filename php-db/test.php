@@ -1,24 +1,19 @@
 <?php
-$server = 'localhost';
-$database = 'test';
-$username = 'root';
-$password = '';
-
-$dsn = "mysql:host={$server};dbname={$database}";
-$conn = null;
+require_once "./etc/config.php";
 
 try {
-    $conn = new PDO($dsn, $username,$password);
-    if ($conn !== null) {
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false );
+    $db = new DB();
+    $conn = $db->open();
 
-        echo "Connected to the $database database successfully";
-
-        $conn = null; // close the connection when finished
-    }
+    echo "Connected successfully to the database";
 }
 catch (PDOException $ex) {
     echo $ex->getMessage();
 }
+finally {
+    if ($db != null && $db->isOpen()) {
+        $db->close();
+    }
+}
 ?>
+
