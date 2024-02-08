@@ -80,6 +80,43 @@ class Profile {
         }
     }
 
+    public function delete() {
+        $db = null;
+        try {
+            if ($this->id !== null) {
+                $db = new DB();
+                $conn = $db->open();
+        
+                $sql = "DELETE FROM profiles WHERE id = :id" ;
+                $params = [
+                    ":id" => $this->id
+                ];
+                $stmt = $conn->prepare($sql);
+                $status = $stmt->execute($params);
+        
+                if (!$status) {
+                    $error_info = $stmt->errorInfo();
+                    $message = sprintf(
+                        "SQLSTATE error code: %d; error message: %s",
+                        $error_info[0],
+                        $error_info[2]
+                    );
+                    throw new Exception($message);  
+                }
+        
+                if ($stmt->rowCount() !== 1) {
+                    throw new Exception("Failed to delete profile.");
+                }
+                $this->id = null;
+            }
+        }
+        finally {
+            if ($db !== null && $db->isOpen()) {
+                $db->close();
+            }
+        }
+    }
+
     public static function findAll() {
         $profiles = array();
 
