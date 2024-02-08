@@ -22,6 +22,64 @@ class Profile {
         }
     }
 
+    public function save() {
+        try {
+            $db = new DB();
+            $conn = $db->open();
+        
+            $params = [
+                ":name" => $this->name,
+                ":age"  => $this->age,
+                ":category" => $this->category,
+                ":experience"  => $this->experience,
+                ":languages" => $this->languages
+            ];
+
+            if ($this->id === null) {
+                $sql = 
+                    "INSERT INTO profiles " . 
+                    "(name, age, category, experience, languages) VALUES " . 
+                    "(:name, :age, :category, :experience, :languages)";
+            }
+            else {
+                $sql = "UPDATE profiles SET " .
+                       "name = :name, " .
+                       "age = :age, " .
+                       "category = :category, " .
+                       "experience = :experience, " .
+                       "languages = :languages " .
+                       "WHERE id = :id" ;
+
+                $params[":id"] = $this->id;
+            }
+            $stmt = $conn->prepare($sql);
+            $status = $stmt->execute($params);
+        
+            if (!$status) {
+                $error_info = $stmt->errorInfo();
+                $message = sprintf(
+                    "SQLSTATE error code: %d; error message: %s",
+                    $error_info[0],
+                    $error_info[2]
+                );
+                throw new Exception($message);  
+            }
+        
+            if ($stmt->rowCount() !== 1) {
+                throw new Exception("Failed to save profile.");
+            }
+        
+            if ($this->id === null) {
+                $this->id = $conn->lastInsertId();
+            }
+        }
+        finally {
+            if ($db !== null && $db->isOpen()) {
+                $db->close();
+            }
+        }
+    }
+
     public static function findAll() {
         $profiles = array();
 
